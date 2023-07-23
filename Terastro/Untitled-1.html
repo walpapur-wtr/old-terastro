@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta lang="uk">
+    <style>
+        .square {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            background-color: #ccc;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="squareContainer"></div>
+<div id="squareContainer1"></div>
+<div id="squareContainer2"></div>
+<div id="squareContainer3"></div>
+
+<script>
+
+
+    var squareContainer = document.getElementById("squareContainer");
+    var square = document.createElement("div");
+    var heading = document.createElement("h1");
+    var paragraph = document.createElement("p");
+
+    heading.textContent = "Заголовок";
+    paragraph.textContent = "Something inside article";
+
+    square.className = "square";
+
+    square.appendChild(heading);
+    square.appendChild(paragraph);
+    squareContainer.appendChild(square);
+
+
+
+    var squareContainer = document.getElementById("squareContainer1");
+    var square = document.createElement("div");
+    var heading = document.createElement("h1");
+    var paragraph = document.createElement("p");
+
+    heading.textContent = "Header";
+    paragraph.textContent = "Something inside article";
+
+    square.className = "square";
+
+    square.appendChild(heading);
+    square.appendChild(paragraph);
+    squareContainer.appendChild(square);
+
+</script>
+</body>
+</html>
