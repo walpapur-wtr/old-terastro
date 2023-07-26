@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Каталог статей</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .article-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .article-block {
+            flex: 0 0 calc(33.33% - 20px);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+            max-width: 300px;
+        }
+
+        .article-block h2 {
+            margin-bottom: 10px;
+            max-height: 60px; /* Максимальна висота заголовка */
+            overflow: hidden; /* Відсічення тексту, який виходить за межі блоку */
+        }
+
+        .article-block p {
+            margin-bottom: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .article-block img {
+            max-width: 100%;
+            height: auto;
+            margin-top: auto;
+            cursor: pointer;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .navigation a {
+            margin: 0 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <a href="create_article.html">Створити статтю</a>
+        <a href="catalog.html">Подивитися каталог</a>
+    </div>
+
+    <h1>Каталог статей</h1>
+
+    <div class="article-container" id="articlesContainer"></div>
+
+    <script>
+        // Отримуємо дані з localStorage
+        var articles = localStorage.getItem("articles") ? JSON.parse(localStorage.getItem("articles")) : [];
+
+        // Функція для переходу на сторінку статті при натисканні на зображення
+        function viewArticle(index) {
+            var article = articles[index];
+            var jsonArticle = JSON.stringify(article);
+            localStorage.setItem("currentArticle", jsonArticle);
+            window.location.href = "article.html";
+        }
+
+        // Функція для видалення статті
+        function deleteArticle(index) {
+            if (confirm("Ви впевнені, що хочете видалити цю статтю?")) {
+                articles.splice(index, 1);
+                localStorage.setItem("articles", JSON.stringify(articles));
+                location.reload(); // Оновлюємо сторінку каталогу
+            }
+        }
+
+        // Виводимо список статей
+        var articlesContainer = document.getElementById("articlesContainer");
+        for (var i = 0; i < articles.length; i++) {
+            var article = articles[i];
+            var articleDiv = document.createElement("div");
+            articleDiv.className = "article-block";
+            articleDiv.innerHTML = "<h2>" + article.title + "</h2><p>" + article.content.substring(0, 100) + "...</p><img src='" + article.imageUrl + "' alt='Зображення статті'>";
+            
+            // Додаємо кнопку для видалення статті
+            var deleteButton = document.createElement("button");
+            deleteButton.className = "delete-button";
+            deleteButton.innerText = "Видалити";
+            (function(index) {
+                deleteButton.addEventListener("click", function() {
+                    deleteArticle(index);
+                });
+            })(i);
+            articleDiv.appendChild(deleteButton);
+
+            // Додаємо обробник події для переходу на сторінку статті при натисканні на зображення
+            var articleImage = articleDiv.querySelector("img");
+            articleImage.addEventListener("click", viewArticle.bind(null, i));
+            articlesContainer.appendChild(articleDiv);
+        }
+    </script>
+</body>
+</html>
