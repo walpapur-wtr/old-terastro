@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Сторінка входу та реєстрації</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      width: 300px; /* Змініть розмір блоку за потребою */
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      margin: 10px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    .register-link,
+    .login-link {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    /* Додайте стиль, щоб ховати реєстраційний блок за межами контейнера */
+    #registration {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+      <div class="form-container" id="registration">
+        <h2>Реєстрація</h2>
+        <form action="register.php" method="post">
+          <input type="text" name="name" placeholder="Ім'я" required>
+          <input type="email" name="email" placeholder="Електронна пошта" required>
+          <input type="password" name="password" placeholder="Пароль" required>
+          <button type="submit" name="register">Зареєструватися</button>
+        </form>
+        <div class="login-link">
+          <a href="login.html">Вхід</a>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
