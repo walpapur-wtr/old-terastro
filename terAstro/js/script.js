@@ -2,9 +2,14 @@ $(document).ready(function(){
     $('.header_burger').click(function(event){
         $('.header_burger, .header_menu').toggleClass('active');
         $('body').toggleClass('lock');
+        // $('.focus_word').toggleClass('active').detach();
+        // $('.focus_word').appendTo();
     });
-    
 });
+
+
+
+// Я НЕ ЗНАЮ
 
 const slidersOne = document.querySelectorAll(".slider_one .slide");
 const slidersTwo = document.querySelectorAll(".slider_two .slide");
