@@ -105,7 +105,7 @@
                 var article = articles[i];
                 var articleDiv = document.createElement("div");
                 articleDiv.className = "article-block";
-                articleDiv.innerHTML = "<h2>" + article.title + "</h2><p>" + article.content.substring(0, 100) + "...</p>";
+                articleDiv.innerHTML = "<h2>" + article.title + "</h2><p>" + article.content.substring(0, 100) + "</p>";
                 if (article.imageUrl) {
                     articleDiv.innerHTML += "<img src='" + article.imageUrl + "' alt='Зображення статті'>";
                 }

@@ -8,7 +8,6 @@
     </style>
 </head>
 <body>
-    <h1>Стаття</h1>
     <div id="articleContainer"></div>
     
     <script src="script.js"></script>
@@ -27,7 +26,7 @@
             if (article) {
                 // Виводимо дані статті на сторінку
                 var articleContainer = document.getElementById("articleContainer");
-                articleContainer.innerHTML = "<h2>" + article.title + "</h2><p>" + article.content + "</p><img src='" + article.imageUrl + "' alt='Зображення статті'>";
+                articleContainer.innerHTML = "<h1>" + article.title + "</h1><p>" + article.content;
             } else {
                 console.log("Статтю не знайдено");
             }

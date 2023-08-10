@@ -33,7 +33,9 @@
         <button id="boldButton">Жирний</button>
         <button id="italicButton">Курсив</button>
         <button id="underlineButton">Підкреслений</button>
-        <button id="resizeButton">Змінити розмір</button>
+        <button id="alignLeftButton">Вирівняти зліва</button>
+        <button id="alignCenterButton">Вирівняти посередині</button>
+        <button id="alignRightButton">Вирівняти з права</button>
         <label for="imageInput">Вставити зображення:</label>
         <input type="file" id="imageInput" accept="image/*">
     </div>
@@ -42,7 +44,7 @@
         <label for="title">Заголовок:</label><br>
         <input type="text" id="title" name="title" required><br><br>
         <div id="resizeHandle">
-            <input type="range" id="resizeSlider" min="50" max="500" step="1" value="200" style="width: 100px;">
+            <input type="range" id="resizeSlider" min="50" max="1000" step="1" value="200" style="width: 100px;">
         </div>
         <label for="content">Зміст:</label><br>
         <div id="content" contenteditable="true" required></div><br><br>
@@ -50,28 +52,5 @@
     </form>
 
     <script src="script.js"></script>
-    <script>
-        // Панель форматування тексту
-        var boldButton = document.getElementById("boldButton");
-        var italicButton = document.getElementById("italicButton");
-        var underlineButton = document.getElementById("underlineButton");
-        var contentDiv = document.getElementById("content");
-
-        boldButton.addEventListener("click", function() {
-            applyFormatting("bold");
-        });
-
-        italicButton.addEventListener("click", function() {
-            applyFormatting("italic");
-        });
-
-        underlineButton.addEventListener("click", function() {
-            applyFormatting("underline");
-        });
-
-        function applyFormatting(style) {
-            document.execCommand(style, false, null);
-        }
-    </script>
 </body>
 </html>

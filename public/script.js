@@ -79,10 +79,16 @@ function insertOrUpdateImage(url) {
     // Insert a new image with an initial size
     img = new Image();
     img.src = url;
-    img.style.width = "200px"; // Set the initial width of the image
+    img.style.width = "400px"; // Set the initial width of the image
     img.style.height = "auto"; // Maintain aspect ratio when resizing
     contentDiv.appendChild(img);
     enableImageResizing(img);
+  }
+
+  // Remove previous comment if any
+  var commentDiv = document.getElementById("commentDiv");
+  while (commentDiv.firstChild) {
+    commentDiv.removeChild(commentDiv.firstChild);
   }
 }
 
@@ -147,6 +153,21 @@ resizeSlider.addEventListener("input", function() {
 var boldButton = document.getElementById("boldButton");
 var italicButton = document.getElementById("italicButton");
 var underlineButton = document.getElementById("underlineButton");
+var alignLeftButton = document.getElementById("alignLeftButton");
+var alignCenterButton = document.getElementById("alignCenterButton");
+var alignRightButton = document.getElementById("alignRightButton");
+
+alignLeftButton.addEventListener("click", function() {
+    applyFormatting("justifyLeft");
+});
+
+alignCenterButton.addEventListener("click", function() {
+    applyFormatting("justifyCenter");
+});
+
+alignRightButton.addEventListener("click", function() {
+    applyFormatting("justifyRight");
+});
 
 boldButton.addEventListener("click", function() {
     applyFormatting("bold");
@@ -161,5 +182,5 @@ underlineButton.addEventListener("click", function() {
 });
 
 function applyFormatting(style) {
-    document.execCommand(style, false, null);
+  document.execCommand(style, false, null);
 }
