@@ -303,7 +303,7 @@ img{
 
 /*--------------------------------------------CONTENT-------------------------------------------*/
 .content {
-    padding: 0 5% 10% 5%;
+    padding: 0 15% 10%;
 }
 .content_text {
     justify-content: center;
@@ -313,10 +313,32 @@ img{
 .content_text p{
     margin: 50px 0 20px 0;
 }
-
+.contact_item{
+    font-family: Source Sans Pro;
+    margin: 40px 0;
+}
+.link{
+    margin-left: 60px;
+}
+.link_contact{
+    text-decoration: underline;
+    font-size: 16px;
+    padding:10px 0;
+    display: block;
+    font-weight: bold;
+}
 .slide{
     text-align: center;
     justify-content: center;
+}
+
+.content_text .link_content_f:hover{
+    color: rgb(4, 0, 255);
+    transition: 0.4s;
+}
+.content_text .link_content:hover{
+    color: rgb(115, 0, 255);
+    transition: 0.4s;
 }
 @media(max-width:2648px){  
     .focus_box{
@@ -539,6 +561,9 @@ img{
         line-height: 26px;
         font-size: 15px;
     }
+    .content{
+        padding: 0 10% 10%;  
+    }
 }
 @media(max-width: 670px){  
     .focus_box{
@@ -553,6 +578,9 @@ img{
     .content_text{
         line-height: 25px;
         font-size: 15px;
+    }
+    .content{
+        padding: 0 8% 10%;  
     }
 }
 @media(max-width: 580px){  
@@ -584,6 +612,9 @@ img{
         line-height: 23px;
         font-size: 12px;
     }
+    .content{
+        padding: 0 5% 10%;  
+    }
 }
 @media(max-width: 420px){  
     .focus_box{
@@ -598,6 +629,9 @@ img{
     .content_text{
         line-height: 20px;
         font-size: 11px;
+    }
+    .content{
+        padding: 0 2% 10%;  
     }
 }
 
@@ -724,7 +758,9 @@ img{
     overflow: hidden;
 }
 .slide {
-    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
     display: none;
 }
 .slide.active {
