@@ -169,6 +169,8 @@ img{
 /*----------------------------------------------MENU-BURGER----------------------------------------------*/
 .header_burger {
     display: none;
+    cursor: pointer;
+    
 }
 .header_list {
     display: flex;
@@ -317,6 +319,13 @@ img{
     font-family: Source Sans Pro;
     margin: 40px 0;
 }
+.moon{
+    justify-content: center;
+    text-align: center;
+}
+.moon_link{
+    border-radius: 32px;
+}
 .link{
     margin-left: 60px;
 }
@@ -331,7 +340,10 @@ img{
     text-align: center;
     justify-content: center;
 }
-
+.title_link{
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
 .content_text .link_content_f:hover{
     color: rgb(4, 0, 255);
     transition: 0.4s;
@@ -340,6 +352,15 @@ img{
     color: rgb(115, 0, 255);
     transition: 0.4s;
 }
+.link_content_moon:hover{
+    color: #746e22;
+    transition: 0.4s;
+}
+.link_content_merc:hover{
+    color: brown;
+    transition: 0.4s;
+}
+
 @media(max-width:2648px){  
     .focus_box{
         padding-top: 250px;
