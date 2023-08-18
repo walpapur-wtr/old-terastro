@@ -344,6 +344,13 @@ img{
     margin-top: 30px;
     margin-bottom: 20px;
 }
+
+.drop_style{
+    font-size: 17px;
+    margin: 0 0 15px 0;
+    border: solid rgb(154, 154, 154);
+    border-width: 1.5px;
+}
 .content_text .link_content_f:hover{
     color: rgb(4, 0, 255);
     transition: 0.4s;
@@ -464,7 +471,7 @@ img{
 }
 @media(max-width:1580px){  
     .focus_box{
-        padding-top: 140px;
+        padding-top: 145px;
         padding-bottom:440px;
     }
     .focus_word{
@@ -484,7 +491,7 @@ img{
 }
 @media(max-width:1380px){  
     .focus_box{
-        padding-top: 110px;
+        padding-top: 125px;
         padding-bottom:380px;
     }
     .focus_word{
@@ -680,7 +687,7 @@ img{
  }
  .articles{
     height: 100%;
-    width: 340px;
+    width: 300px;
     margin: 40px 10px 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
     padding: 20px 30px;
