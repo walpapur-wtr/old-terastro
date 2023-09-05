@@ -351,6 +351,10 @@ img{
     border: solid rgb(154, 154, 154);
     border-width: 1.5px;
 }
+
+.link_content_f, .link_content{
+    font-style: italic;
+}
 .content_text .link_content_f:hover{
     color: rgb(4, 0, 255);
     transition: 0.4s;
