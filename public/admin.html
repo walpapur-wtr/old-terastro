@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Подача статті</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        #formattingPanel {
+            padding: 10px;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #articleForm {
+            margin-bottom: 20px;
+        }
+
+        #content {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+            background-color: #f5f5f5; /* Сірий фон поля */
+        }
+    </style>
+</head>
+<body>
+    <h1>Подача статті</h1>
+
+    <div id="formattingPanel">
+        <button id="boldButton">Жирний</button>
+        <button id="italicButton">Курсив</button>
+        <button id="underlineButton">Підкреслений</button>
+        <button id="alignLeftButton">Вирівняти зліва</button>
+        <button id="alignCenterButton">Вирівняти посередині</button>
+        <button id="alignRightButton">Вирівняти з права</button>
+        <label for="imageInput">Вставити зображення:</label>
+        <input type="file" id="imageInput" accept="image/*">
+    </div>
+
+    <form id="articleForm" action="/api/articles" method="POST"> <!-- Змінено атрибут action -->
+        <label for="title">Заголовок:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+        <div id="resizeHandle">
+            <input type="range" id="resizeSlider" min="50" max="1000" step="1" value="200" style="width: 100px;">
+        </div>
+        <label for="content">Зміст:</label><br>
+        <div id="content" contenteditable="true" required></div><br><br>
+        <input type="submit" value="Зберегти статтю">
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>

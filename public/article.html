@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Стаття</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        /* Стилі тут */
+    </style>
+</head>
+<body>
+    <div id="articleContainer"></div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Отримуємо значення параметру id з URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var articleId = urlParams.get("id");
+
+        // Отримуємо дані про статтю з JSON файлу за її індексом
+        fetch("/api/articles")
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(articles) {
+            var article = articles[articleId];
+            if (article) {
+                // Виводимо дані статті на сторінку
+                var articleContainer = document.getElementById("articleContainer");
+                articleContainer.innerHTML = "<h1>" + article.title + "</h1><p>" + article.content;
+            } else {
+                console.log("Статтю не знайдено");
+            }
+        })
+        .catch(function(error) {
+            console.log("Помилка при отриманні даних статті:", error);
+        });
+    </script>
+</body>
+</html>

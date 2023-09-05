@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Каталог статей</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .navigation a {
+            margin: 0 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+
+        .article-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .article-block {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            max-width: 300px;
+        }
+
+        .article-block h2 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            line-height: 1.3;
+            height: 60px; /* Максимальна висота заголовка */
+            overflow: hidden; /* Відсічення тексту, який виходить за межі блоку */
+        }
+
+        .article-block p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+            height: 90px; /* Максимальна висота контенту */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .article-block img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .view-button {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .view-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <a href="create_article.html">Створити статтю</a>
+        <a href="catalog.html">Подивитися каталог</a>
+    </div>
+
+    <h1>Каталог статей</h1>
+
+    <div class="article-container" id="articlesContainer"></div>
+
+    <script src="script.js"></script>
+    <script>
+        // Отримуємо дані про статті з JSON файлу
+        fetch("/api/articles")
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(articles) {
+            // Виводимо список статей
+            var articlesContainer = document.getElementById("articlesContainer");
+            for (var i = 0; i < articles.length; i++) {
+                var article = articles[i];
+                var articleDiv = document.createElement("div");
+                articleDiv.className = "article-block";
+                articleDiv.innerHTML = "<h2>" + article.title + "</h2><p>" + article.content.substring(0, 100) + "</p>";
+                if (article.imageUrl) {
+                    articleDiv.innerHTML += "<img src='" + article.imageUrl + "' alt='Зображення статті'>";
+                }
+                
+                // Додаємо посилання на окрему статтю
+                var viewButton = document.createElement("button");
+                viewButton.innerText = "Переглянути";
+                (function(id) {
+                    viewButton.addEventListener("click", function() {
+                        window.location.href = "article.html?id=" + id;
+                    });
+                })(i);
+                articleDiv.appendChild(viewButton);
+
+                articlesContainer.appendChild(articleDiv);
+            }
+        })
+        .catch(function(error) {
+            console.log("Помилка при отриманні списку статей:", error);
+        });
+    </script>
+</body>
+</html>
