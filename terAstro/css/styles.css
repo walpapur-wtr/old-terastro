@@ -512,6 +512,7 @@ img{
         font-size: 47px;
         line-height: 65px;
     }
+
 }
 @media(max-width:1170px){  
     .focus_box{
@@ -522,6 +523,9 @@ img{
         font-size: 45px;
         line-height: 60px;
     }
+    .video_yt{
+        display: inline-block;
+    }    
 }
 @media(max-width:1100px){  
     .focus_box{
@@ -750,6 +754,20 @@ img{
     color: rgb(106, 0, 255);
     transition: 0.4s;
 }
+.item_video{
+    text-align: center;
+    font-family: "SourceSansPro";
+}
+.video_yt{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.link_video{
+    position: relative;
+    margin: 20px 20px 20px;
+}
+
 
 @media (max-width:1100px) {
     .date{
