@@ -22,7 +22,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 5px;
-            background-color: #f5f5f5; /* Сірий фон поля */
+            background-color: #f5f5f5;
         }
     </style>
 </head>
@@ -40,7 +40,13 @@
         <input type="file" id="imageInput" accept="image/*">
     </div>
 
-    <form id="articleForm" action="/api/articles" method="POST"> <!-- Змінено атрибут action -->
+    <label for="categories">Категорії:</label><br>
+    <input type="checkbox" id="category1" name="categories" value="Про учасників">Про учасників<br>
+    <input type="checkbox" id="category2" name="categories" value="Події">Події<br>
+    <input type="checkbox" id="category3" name="categories" value="ЗМІ про нас">ЗМІ про нас<br>
+    <input type="checkbox" id="category4" name="categories" value="Блог">Блог<br>
+
+    <form id="articleForm" action="/api/articles" method="POST">
         <label for="title">Заголовок:</label><br>
         <input type="text" id="title" name="title" required><br><br>
         <div id="resizeHandle">

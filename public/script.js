@@ -1,31 +1,33 @@
-document.getElementById("articleForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+document.getElementById("articleForm").addEventListener("submit", function (event) {
+  event.preventDefault();
 
-    var title = document.getElementById("title").value;
-    var content = document.getElementById("content").innerHTML;
+  var title = document.getElementById("title").value;
+  var content = document.getElementById("content").innerHTML;
+  var selectedCategories = Array.from(document.querySelectorAll("input[name='categories']:checked")).map(checkbox => checkbox.value); // Отримання обраних категорій
 
-    var article = {
-        "title": title,
-        "content": content
-    };
+  var article = {
+      "title": title,
+      "content": content,
+      "categories": selectedCategories // Передача обраних категорій до об'єкту статті
+  };
 
-    fetch("/api/articles", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(article)
-    })
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(data) {
-        console.log(data.message);
-        window.location.href = "catalog.html"; // Перенаправлення на сторінку каталогу
-    })
-    .catch(function(error) {
-        console.log("Помилка при збереженні статті:", error);
-    });
+  fetch("/api/articles", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(article)
+  })
+  .then(function (response) {
+      return response.json();
+  })
+  .then(function (data) {
+      console.log(data.message);
+      window.location.href = "catalog.html";
+  })
+  .catch(function (error) {
+      console.log("Помилка при збереженні статті:", error);
+  });
 });
 
 // Function to enable real-time image resizing
@@ -103,6 +105,32 @@ function showResizeHandle() {
 function hideResizeHandle() {
   resizeHandle.style.display = "none";
 }
+
+// Отримуємо всі кнопки "Видалити статтю"
+var deleteButtons = document.querySelectorAll(".deleteButton");
+
+// Додаємо обробник подій для кожної кнопки
+deleteButtons.forEach(function (button) {
+  button.addEventListener("click", function (event) {
+    var idToDelete = event.target.getAttribute("data-id");
+
+    // Викликаємо API для видалення статті з сервера
+    fetch("/api/articles/" + idToDelete, {
+      method: "DELETE",
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data.message);
+        // Оновлюємо сторінку, наприклад, перезавантажуємо її
+        location.reload();
+      })
+      .catch(function (error) {
+        console.log("Помилка при видаленні статті:", error);
+      });
+  });
+});
 
 contentDiv.addEventListener("click", function(event) {
   var clickedImage = event.target;

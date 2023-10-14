@@ -1,19 +1,15 @@
 const express = require("express");
 const app = express();
 const fs = require("fs");
-const port = 3000; // Змініть на потрібний порт
+const port = 3000;
 const bodyParser = require("body-parser");
 const path = require("path");
 
-// Додайте обмеження розміру запиту в 5 мегабайт (або інший розмір, який вам потрібен)
 app.use(bodyParser.json({ limit: "100mb" }));
-
 app.use(bodyParser.json());
 
-// Шлях до папки, де будуть зберігатись JSON файли
 const dataFolderPath = path.join(__dirname, "data");
 
-// Отримати дані про статті з JSON файлу
 function getArticlesData() {
   const filePath = path.join(dataFolderPath, "articles.json");
   try {
@@ -24,30 +20,53 @@ function getArticlesData() {
   }
 }
 
-// Зберегти дані про статті у JSON файл
 function saveArticlesData(data) {
   const filePath = path.join(dataFolderPath, "articles.json");
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
 }
 
-// Роут для отримання всіх статей
 app.get("/api/articles", (req, res) => {
   const articles = getArticlesData();
   res.json(articles);
 });
 
-// Роут для збереження статті
 app.post("/api/articles", (req, res) => {
-  const article = req.body;
-  const articles = getArticlesData();
+  const { title, content, categories } = req.body;
+  const { articles, lastId } = getArticlesData();
+
+  // Збільшити id на 1 порівняно з останнім id
+  const newId = lastId + 1;
+
+  // Переконайтеся, що категорії є масивом
+  const articleCategories = Array.isArray(categories) ? categories : [categories];
+
+  const article = {
+    id: newId, // Встановити нове id
+    title: title,
+    content: content,
+    categories: articleCategories, // Зберігайте категорії як масив
+  };
+
   articles.push(article);
   saveArticlesData(articles);
   res.json({ message: "Стаття успішно збережена" });
 });
 
-// Додаємо middleware для обробки статичних файлів
+
+app.get("/api/articles/:categories", (req, res) => {
+  const selectedCategories = req.params.categories.split(',');
+  const articles = getArticlesData();
+
+  const filteredArticles = articles.filter((article) => {
+    return selectedCategories.some((category) => article.categories.includes(category.trim()));
+  });
+
+  res.json(filteredArticles);
+});
+
+
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static(dataFolderPath)); // Додайте цей middleware для каталогу data
+app.use(express.static(dataFolderPath));
 
 app.listen(port, () => {
   console.log(`Сервер запущено на порті ${port}`);
