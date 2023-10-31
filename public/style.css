@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+a {
+    display: none;
+}
+
+.selected {
+    outline: 2px solid blue;
+}
+.active {
+    background-color: lightblue;
+}
+#resizeHandle {
+    margin-bottom: 30px;
+    display: none;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    cursor: se-resize; /* Set the cursor to indicate resizing */
+}
+
+#imageContainer {
+  position: relative;
+}
+
+#selectedImage {
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#commentDiv {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+}
+
+.comment {
+  font-size: 12px;
+  color: #777;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+
+#commentInput {
+  width: 100%;
+  height: 60px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+  resize: none;
+}
+
+#addCommentButton {
+  display: block;
+  margin-top: 5px;
+}
+

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="./img/fon/terastro.jpg">
+    <title>Подача статті</title>
+    <style>
+/* **************** HEADER ************** */
+        .backround-img{
+            position: absolute;
+            min-width: 100%;
+            height: auto;
+            margin: 0 0;
+            overflow:auto;
+        }
+        .backround-img img{
+            width: 100%;
+            height: 100%;
+        }
+        .focus_box{
+            max-height: 100px;
+            padding-bottom: 400px ;
+        }
+        .focus_word{
+            display:inline-block;
+            line-height: 77px;
+            align-items: center;
+            text-align: center;
+            /* justify-content: center; */
+            margin: 50px 0 0px 0;
+            display: block;
+            font-size: 45px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            position: relative;
+            animation: text 3s 1 forwards ;
+            color: rgb(255, 255, 255);
+        }
+        .overley{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            opacity: 0.6;
+            overflow: hidden;
+        }
+        #formattingPanel {
+            padding: 10px;
+            background-color:white;
+            display: inline-block;
+            border-radius: 8px;
+            justify-content: center;
+            text-align: center;
+            margin-left: 25px;
+            margin-top: 30px;
+        }
+        .container{
+            padding: 0 40px;
+            width: 1021px;
+        }
+        .title-header{
+            text-align: center;
+            margin: 20px;
+        }
+        .Text-tools{
+            font-size: 15px;
+            width: 115px;
+            margin-right: 10px;
+            margin-bottom: 15px;
+            padding: 10px 13px;
+            background: rgb(221, 221, 221);
+            /* color: white; */
+            border-radius: 10px;
+            opacity: 0.6,rgb(116, 0, 0);
+        }
+        .leveling{
+            display: inline-block;
+            position: relative;
+            font-size: 15px;
+            margin-right: 10px;
+            margin-bottom: 15px;
+            padding: 10px 13px;
+            background: rgb(221, 221, 221);
+            /* color: white; */
+            border-radius: 10px;
+            opacity: 0.6,rgb(116, 0, 0);
+            cursor: pointer;
+
+        }
+        #alignButton {
+            background: rgb(221, 221, 221);
+            color: #000000;
+            border: none;
+        }
+        .alignment-dropdown {
+            display: none;
+            position: absolute;
+            background-color:rgb(221, 221, 221);
+            border: 0px 2px 2px 2px solid #790000;
+            z-index: 1;
+            margin: 0;
+            border-radius: 0px 0px 8px 8px;
+            width: 128.5px;
+            margin: 0 -13px;
+            cursor: pointer;
+
+        }
+
+        .alignment-dropdown button {
+            display: block;
+            text-align: left;
+            border: none;
+            background-color: transparent;
+            margin: 0;
+            /* border-radius: 8px; */
+            margin-top: 1px;
+            width: 100%;
+        }
+
+        .italic{
+            color: #000;
+            text-align: center;
+            /* font-family: "Source Sans 3"; */
+            font-size: 15px;
+            font-style: italic;
+            font-weight: 400;
+            line-height: normal;
+        }
+        .bold{
+            color: #000;
+            text-align: center;
+            font-family: Source Sans 3;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+        .underline{
+            color: #000;
+            text-align: center;
+            font-family: Source Sans 3;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            text-decoration-line: underline;
+        }
+        .file-selection{
+            cursor: pointer;
+            font-size: 15px;
+            height: 60px;
+            width: 100%;
+            margin-right: 10px;
+            margin-bottom: 15px;
+            padding: 10px 13px;
+            background: rgb(221, 221, 221);
+            /* color: white; */
+            border-radius: 10px;
+            opacity: 0.6,rgb(116, 0, 0);
+        }
+
+        .file-selection label{
+            cursor: pointer;
+        }
+
+        .image-input{
+            display: none;
+        }
+
+
+        /* *********************** HOVER ************************************/
+        .Text-tools:hover {
+            background-color: #AAAAAA;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.25);
+             transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .leveling:hover{
+            background-color: #AAAAAA;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.25);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .file-selection:hover{
+            background-color: #AAAAAA;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.25);
+            transition: background-color 0.3s, box-shadow 0.3s;
+
+        }
+        .save:hover{
+            background-color: #AAAAAA;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.25);
+            transition: background-color 0.3s, box-shadow 0.3s;
+
+        }
+        #imageLabel {
+            display: block;
+            width: 200px;
+            height: 30px;
+            background: #e1e1e1;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .imputdiv-title{
+            text-align: center;
+            justify-content: center;
+            height: 60px;
+            margin-top: 50px;
+        }
+        .input-title{
+            /* border: 1px black solid; */
+            background-color: #c5c5c5;
+            padding: 0 10px ;
+            justify-content: center;
+            text-align: center;
+            width: 941px;;
+            height: 60px;
+            border-radius: 16px;
+            background: #D9D9D9;
+            box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+            flex-shrink: 0;
+        }
+        .input-title::placeholder{
+            border-bottom: 1px solid #898989;
+        }
+        #articleForm {
+            margin-bottom: 20px;
+        }
+
+        #content {
+            width: 941px;
+            min-height: 670px;
+            border: 1px solid #ccc;
+            border-radius: 24px;
+            padding: 35px;
+            margin-top: 15px;
+            /* text-align: center; */
+            justify-content: center;
+            background-color: #f5f5f5; /* Сірий фон поля */
+            background: #f0f0f0;
+            box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+        }
+        .save{
+            float: right;
+            font-size: 15px;
+            margin-right: 10px;
+            margin-bottom: 15px;
+            padding: 10px 5px;
+            background: rgb(221, 221, 221);
+            /* color: white; */
+            border-radius: 10px;
+            opacity: 0.6,rgb(116, 0, 0);
+        }
+        .resizeHandle{
+            display: block;
+        }
+        .resizeSlider{
+            display: inline-block;
+        }
+    </style>
+</head>
+
+    <body>
+        <div class="wrapper">
+            <header class="header">
+                <div class="container">
+                    <div class="header_body">
+                        <div class="header_burger">
+                            <span></span>
+                        </div>
+                        <nav class="header_menu">
+                            <ul class="header_list">
+                                <li class="list_item">
+                                    <a href="./index.html" class="header_link">Головна</a>
+                                </li>
+                                <li class="list_item">
+                                    <a href="./ter_astro_page.html" class="header_link">Терастро</a>
+                                </li>
+                                <li class="list_item">
+                                    <a href="./nebozvid_page.html" class="header_link">Небозвід</a>
+                                </li>
+                                <li class="list_item">
+                                    <a href="./lsao_page.html?category=LSAO" class="header_link">Lsao</a>
+                                </li>
+                                <li class="list_item">
+                                    <a class="dropdown-toggle header_link" data-bs-toggle="dropdown" href="./catalog.html" role="button" aria-expanded="false" >Статті</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=Про учасників">Про учасників</a></li>
+                                        <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=Події">Події</a></li>
+                                        <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=ЗМІ про нас">ЗМІ про нас</a></li>
+                                        <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=Блог">Блог</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="list_item">
+                                    <a class="dropdown-toggle header_link" data-bs-toggle="dropdown"
+                                        href="./astrophoto.html" role="button" aria-expanded="false">Галерея</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item drop_little header_link" href="./astrophoto.html">Астрофото</a></li>
+                                        <li><a class="dropdown-item drop_little header_link" href="./astrovideo.html">Астровідео</a></li>
+                                    </ul>
+                                </li>
+                                <li class="list_item">
+                                    <a href="./white_swan_page.html" class="header_link">White swan</a>
+                                </li>
+                                <li class="list_item">
+                                    <a href="./tsikavi_pos_page.html" class="header_link">Цікаві посилання</a>
+                                </li>
+                                <li class="list_item">
+                                    <a href="./contacts_page.html" class="header_link">Контакти</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="focus_box">
+                        <p class="focus_word">
+                          Подача статті
+                        </p>
+                    </div>
+                </div>
+            </header>
+            <div class="backround-img">
+                <div class="overley">
+                    <!-- /*****************************/ -->
+                </div>
+                <img src="./img/fon/article.jpg" alt="backround images" class="background">
+            </div>
+    
+
+    <div class="container"> 
+        <form id="articleForm" action="/api/articles" method="POST"> <!-- Змінено атрибут action -->
+            <div class="imputdiv-title">
+                <!-- <label style="font-size: 28px; padding-right: 30px;" for="title">Заголовок:</label><br> -->
+                <input class="input-title" type="text" id="title" name="title" placeholder="Загадкові світи космосу: Нові відкриття у астрономії" required><br><br>
+                
+            </div>
+            <!-- <label for="content">Зміст:</label><br> -->
+            <div id="formattingPanel">
+                <button class="Text-tools" id="italicButton"><span class="italic">Курсив</span></button>
+                <button class="Text-tools" id="boldButton"><span class="bold">Жирний</span></button>
+                <button class="Text-tools" id="underlineButton"> <span class="underline">Підкреслений</span></button>
+                <div class="leveling">
+                    <button style=" background-color: rgba(255, 255, 255, 0);" id="alignButton">Вирівнювання</button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="6" height="5" viewBox="0 0 6 5" fill="none">
+                        <path d="M3 4.5L5.59808 0H0.401924L3 4.5Z" fill="black"/>
+                      </svg>
+                    <div id="alignmentDropdown" class="alignment-dropdown">
+                        <button class="Text-tools" id="alignLeftButton">Зліва</button>
+                        <button class="Text-tools" id="alignCenterButton">Посередині</button>
+                        <button class="Text-tools" id="alignRightButton">З права</button>
+                    </div>
+                </div>
+
+                <span class="file-selection">
+                    <label for="imageInput">Вставити зображення</label>
+                    <input type="file" id="imageInput" accept="image/*" class="image-input" onchange="updateImageLabel(this)">
+                </span>
+                
+
+                <input type="range" id="resizeSlider" min="50" max="1000" step="1" value="200" style="width: 145px; height: 11px;">
+            </div>
+            <div class="resizeHandle">
+                <div id="content" contenteditable="true" required></div><br><br>
+            </div>
+            <input class="save" type="submit" value="Зберегти статтю">
+        </form> 
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer_body">
+                <div class="footer_text">
+                    <h4>Про нас</h4>
+                    <div class="footer_texr">
+                        <p>
+                            Клуб любителів астрономії “ТерАстро”.
+                            Астрономічне товариство Тернопільського району “Небозвід”.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="logo">
+                    <img src="./img/logo/logo1.jpg" alt="Логотип">
+                </div>
+
+                <div class="footer_social_network">
+                    <a href="https://facebook.com/groups/astroTernopil/" target="_blank">
+                        <img src="./img/for footer/facebook.png" alt="Посилання на фейсбук">
+                    </a>
+                    <a href="https://instagram.com/astroternopil/" target="_blank">
+                        <img src="./img/for footer/instagram.png" alt="Посилання на інстаграм">
+                    </a>
+                    <a href="https://nebozvid.blogspot.com/" target="_blank">
+                        <img src="./img/for footer/blog-text.png" alt="Посилання на блогспот">
+                    </a>
+                    <a href="mailto:terastro2017@gmail.com">
+                        <img src="./img/for footer/envelope.png" alt="Напишіть нам!">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
