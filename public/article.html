@@ -4,7 +4,9 @@
     <title>Стаття</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
-        /* Стилі тут */
+        a {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -26,7 +28,7 @@
             if (article) {
                 // Виводимо дані статті на сторінку
                 var articleContainer = document.getElementById("articleContainer");
-                articleContainer.innerHTML = "<h1>" + article.title + "</h1><p>" + article.content;
+                articleContainer.innerHTML = "<h1>" + article.title + "</h1>" + article.content;
             } else {
                 console.log("Статтю не знайдено");
             }
