@@ -89,6 +89,57 @@
                 </div>
             </div>
         </div>
+
+        <div id="moonwalker"></div>
+        <script>
+            var comparison = function (masyv1, masyv2, date) { //порівнює попарно елементи масивів та дату, проміжні фази
+                for (var i = 0; i < masyv1.length; i++){
+                    var date1 = new Date(masyv1[i]);
+                    var date2 = new Date(masyv2[i]);
+                    if (date > date1 && date < date2){
+                        return true;
+                    }
+                }    
+            }
+            var full_moon = ['2023.10.28', '2023.11.27', '2023.12.27', '2024.1.25', '2024.2.24', '2024.3.25', '2024.4.24', '2024.5.23', '2024.6.22', '2024.7.21', '2024.8.19', '2024.9.18', '2024.10.17', '2024.11.15', '2024.12.15'];
+            var third_quarter = ['2023.11.5', '2023.12.5', '2024.1.4', '2024.2.3', '2024.3.3', '2024.4.2', '2024.5.1', '2024.5.30', '2024.6.29', '2024.7.28', '2024.8.26', '2024.9.24', '2024.10.24', '2024.11.23', '2024.12.23'];
+            var new_moon = ['2023.11.13', '2023.12.13', '2024.1.11', '2024.2.10', '2024.3.10', '2024.4.8', '2024.5.8', '2024.6.6', '2024.7.6', '2024.8.4', '2024.9.3', '2024.10.2', '2024.11.1', '2024.12.1', '2024.12.31'];
+            var first_quarter = ['2023.11.20', '2023.12.19', '2024.1.18', '2024.2.16', '2024.3.17', '2024.4.15', '2024.5.15', '2024.6.14', '2024.7.14', '2024.8.12', '2024.9.11', '2024.10.10', '2024.11.9', '2024.12.8'];
+            var date = new Date();
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+            let year = date.getFullYear();
+            var date_str = year + '.' + month + '.' + day; //склеюємо дату для перевірки
+            var img = document.createElement("img");
+            if (full_moon.includes(date_str)){
+                img.src = "img/moon-images/full_moon.jpg";
+            }
+            else if (third_quarter.includes(date_str)){
+                img.src = "img/moon-images/third_quarter.jpg";
+            }
+            else if (new_moon.includes(date_str)){
+                img.src = "img/moon-images/new_moon.jpg";
+            }
+            else if (first_quarter.includes(date_str)){ //видає основну фазу, якщо дата відповідна
+                img.src = "img/moon-images/first_quarter.jpg";
+            }
+            else if (comparison(full_moon, third_quarter, date)){
+                img.src = "img/moon-images/spadayucha1.jpg";
+            }
+            else if (comparison(third_quarter, new_moon, date)){
+                img.src = "img/moon-images/spadayucha2.jpg";
+            }
+            else if (comparison(new_moon, first_quarter, date)){
+                img.src = "img/moon-images/zrostayucha1.jpg";
+            }
+            else { //видає яка проміжна фаза, якщо дата не відповідна
+                img.src = "img/moon-images/zrostayucha2.jpg";
+            }
+            var src = document.getElementById("moonwalker");
+            src.appendChild(img);
+        </script>
+    </div>
+
     </div>
  
     <footer class="footer">
