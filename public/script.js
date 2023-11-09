@@ -248,3 +248,33 @@ function getSelectedText() {
     }
     return "";
 }
+
+// Перевіряємо, чи є збережені дані в localStorage
+var savedTitle = localStorage.getItem('savedTitle');
+var savedContent = localStorage.getItem('savedContent');
+
+// Заповнюємо форму збереженими даними, якщо вони є
+if (savedTitle) {
+    document.getElementById('title').value = savedTitle;
+}
+
+if (savedContent) {
+    document.getElementById('content').innerHTML = savedContent;
+}
+
+// Оновлюємо localStorage при введенні нових даних користувачем
+document.getElementById('title').addEventListener('input', function() {
+    var titleValue = this.value;
+    localStorage.setItem('savedTitle', titleValue);
+});
+
+document.getElementById('content').addEventListener('input', function() {
+    var contentValue = this.innerHTML;
+    localStorage.setItem('savedContent', contentValue);
+});
+
+// Очищаємо localStorage при відправці форми
+document.getElementById('articleForm').addEventListener('submit', function() {
+    localStorage.removeItem('savedTitle');
+    localStorage.removeItem('savedContent');
+});
