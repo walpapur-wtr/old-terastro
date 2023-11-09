@@ -32,7 +32,7 @@
                                 <a href="./nebozvid_page.html" class="header_link">Небозвід</a>
                             </li>
                             <li class="list_item">
-                                <a href="./lsao_page.html?category=LSAO" class="header_link">Lsao</a>
+                                <a href="./lsao_page.html" class="header_link">Lsao</a>
                             </li>
                             <li class="list_item">
                                 <a class="dropdown-toggle header_link" data-bs-toggle="dropdown" href="./catalog.html" role="button" aria-expanded="false" >Статті</a>
@@ -265,8 +265,14 @@
 
                         // Додайте зміст статті (перших 100 символів, наприклад)
                         var contentElement = document.createElement("p");
-                        contentElement.textContent = article.content.substring(0, 100) + " ..."; // Перших 100 символів
+                        contentElement.innerText = stripHTMLTags(article.content.substring(0, 100)) + " ...";
                         articleDiv.appendChild(contentElement);
+
+                        // Функція для видалення HTML-тегів
+                        function stripHTMLTags(html) {
+                            var doc = new DOMParser().parseFromString(html, 'text/html');
+                            return doc.body.textContent || "";
+                        }
 
                         // Якщо є зображення, додайте його
                         if (article.imageUrl) {

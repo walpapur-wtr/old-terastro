@@ -212,3 +212,39 @@ underlineButton.addEventListener("click", function() {
 function applyFormatting(style) {
   document.execCommand(style, false, null);
 }
+
+// Отримуємо кнопки для зміни шрифту
+var fontSelect = document.getElementById("fontSelect");
+var fontSizeSelect = document.getElementById("fontSizeSelect");
+
+// Додаємо обробники подій для кнопок
+fontSelect.addEventListener("change", function() {
+    var selectedFont = fontSelect.value;
+    document.execCommand("fontName", false, selectedFont);
+});
+
+fontSizeSelect.addEventListener("change", function() {
+    var selectedSize = fontSizeSelect.value;
+    document.execCommand("fontSize", false, selectedSize);
+});
+
+//------
+
+var linkButton = document.getElementById("linkButton");
+
+linkButton.addEventListener("click", function() {
+    var selectedText = getSelectedText();
+    var url = prompt("Введіть посилання:");
+    if (url && selectedText) {
+        document.execCommand("insertHTML", false, `<a href="${url}" target="_blank">${selectedText}</a>`);
+    }
+});
+
+function getSelectedText() {
+    if (window.getSelection) {
+        return window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") {
+        return document.selection.createRange().text;
+    }
+    return "";
+}

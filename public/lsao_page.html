@@ -234,7 +234,7 @@
                     var selectedCategory = event.target.getAttribute("data-category");
                     loadArticlesByCategory(selectedCategory);
                     // Додайте перехід на каталог статей з вибраною категорією
-                    window.location.href = "lsao_page.html?category=" + encodeURIComponent(selectedCategory);
+                    window.location.href = "catalog.html?category=" + encodeURIComponent(selectedCategory);
                 });
             });
         });
@@ -260,8 +260,14 @@
 
                         // Додайте зміст статті (перших 100 символів, наприклад)
                         var contentElement = document.createElement("p");
-                        contentElement.textContent = article.content.substring(0, 100) + " ..."; // Перших 100 символів
+                        contentElement.innerText = stripHTMLTags(article.content.substring(0, 100)) + " ...";
                         articleDiv.appendChild(contentElement);
+
+                        // Функція для видалення HTML-тегів
+                        function stripHTMLTags(html) {
+                            var doc = new DOMParser().parseFromString(html, 'text/html');
+                            return doc.body.textContent || "";
+                        }
 
                         // Якщо є зображення, додайте його
                         if (article.imageUrl) {
