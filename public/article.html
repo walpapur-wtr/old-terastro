@@ -1,14 +1,205 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Стаття</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="./img/fon/terastro.jpg">
+    <title id="pageTitle">Стаття</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header_body">
+                    <div class="header_burger">
+                        <span></span>
+                    </div>
+                    <nav class="header_menu">
+                        <ul class="header_list">
+                            <li class="list_item">
+                                <a href="./index.html" class="header_link">Головна</a>
+                            </li>
+                            <li class="list_item">
+                                <a href="./ter_astro_page.html" class="header_link">Терастро</a>
+                            </li>
+                            <li class="list_item">
+                                <a href="./nebozvid_page.html" class="header_link">Небозвід</a>
+                            </li>
+                            <li class="list_item">
+                                <a href="./lsao_page.html?category=LSAO" class="header_link">Lsao</a>
+                            </li>
+                            <li class="list_item">
+                                <a class="dropdown-toggle header_link" data-bs-toggle="dropdown" href="./catalog.html" role="button" aria-expanded="false" >Статті</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=Про учасників">Про учасників</a></li>
+                                    <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=Події">Події</a></li>
+                                    <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=ЗМІ про нас">ЗМІ про нас</a></li>
+                                    <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=Блог">Блог</a>
+                                </ul>
+                        </li>
+                        <li class = "list_item">
+                            <a class="dropdown-toggle header_link" data-bs-toggle="dropdown" href="./astrophoto.html" role="button" aria-expanded="false" >Галерея</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item drop_little header_link" href="./astrophoto.html">Астрофото</a></li>
+                                    <li><a class="dropdown-item drop_little header_link" href="./astrovideo.html">Астровідео</a></li>
+                                </ul>
+                            </li>
+                            <li class="list_item">
+                                <a href="./white_swan_page.html" class="header_link">White swan</a>
+                            </li>
+                            <li class="list_item">
+                                <a href="./tsikavi_pos_page.html" class="header_link">Цікаві посилання</a>
+                            </li>
+                            <li class="list_item">
+                                <a href="./contacts_page.html" class="header_link">Контакти</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="focus_box">
+                    <p class="focus_word" id="articleTitle"></p>
+                </div>
+            </div>
+        </header>
+        <div class="backround-img">
+            <div class="overley">
+                <!-- /*****************************/ -->
+            </div>
+            <img src="./img/fon/Lsao.jpg" alt="backround images" class="background">
+        </div>
     <style>
-        a {
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
+            font-family: "Source Sans Pro";
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .navigation a {
+            margin: 0 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+
+                /* Оновлена стилізація для підменю */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            top: 100%; /* Розташування підменю під кнопкою */
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
             display: block;
         }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #0056b3;
+        }
+
+        .article-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .article-block {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            max-width: 300px;
+        }
+
+        .article-block h2 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            line-height: 1.3;
+            height: 60px;
+            overflow: hidden;
+        }
+
+        .article-block p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+            height: 90px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .article-block img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .view-button {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .view-button:hover {
+            background-color: #0056b3;
+        }
     </style>
-</head>
+
+<main>
 <body>
     <div id="articleContainer"></div>
     
@@ -28,7 +219,7 @@
             if (article) {
                 // Виводимо дані статті на сторінку
                 var articleContainer = document.getElementById("articleContainer");
-                articleContainer.innerHTML = "<h1>" + article.title + "</h1>" + article.content;
+                articleContainer.innerHTML = article.content;
             } else {
                 console.log("Статтю не знайдено");
             }
@@ -36,6 +227,84 @@
         .catch(function(error) {
             console.log("Помилка при отриманні даних статті:", error);
         });
+
+        // Отримуємо значення параметру id з URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var articleId = urlParams.get("id");
+
+        // Отримуємо дані про статтю з JSON файлу за її індексом
+        fetch("/api/articles")
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(articles) {
+            var article = articles[articleId];
+            if (article) {
+                // Виводимо назву статті
+                var articleTitle = document.getElementById("articleTitle");
+                articleTitle.textContent = article.title;
+            } else {
+                console.log("Статтю не знайдено");
+            }
+        })
+        .catch(function(error) {
+            console.log("Помилка при отриманні даних статті:", error);
+        });
+
+        // Якщо є параметр id в URL, встановлюємо назву статті як заголовок
+        if (articleId) {
+            fetch("/api/articles")
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(articles) {
+                var article = articles[articleId];
+                if (article) {
+                    document.getElementById("pageTitle").innerText = article.title;
+                } else {
+                    console.log("Статтю не знайдено");
+                }
+            })
+            .catch(function(error) {
+                console.log("Помилка при отриманні даних статті:", error);
+            });
+        }
     </script>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer_body">
+                <div class="footer_text">
+                    <h4>Про нас</h4>
+                    <div class="footer_texr">
+                        <p>
+                            Клуб любителів астрономії “ТерАстро”.
+                            Астрономічне товариство Тернопільського району “Небозвід”.
+                        </p>
+                    </div>    
+                </div>
+                <div class="logo">
+                    <img src="./img/logo/logo1.jpg" alt="Логотип">
+                </div>
+                <div class="footer_social_network">
+                    <a href="https://facebook.com/groups/astroTernopil/" target="_blank">
+                        <img src="./img/for footer/facebook.png" alt="Посилання на фейсбук">
+                    </a>
+                    <a href="https://instagram.com/astroternopil/" target="_blank">
+                        <img src="./img/for footer/instagram.png" alt="Посилання на інстаграм">
+                    </a>
+                    <a href="https://nebozvid.blogspot.com/" target="_blank">
+                        <img src="./img/for footer/blog-text.png" alt="Посилання на блогспот">
+                    </a>
+                    <a href="mailto:terastro2017@gmail.com">
+                        <img src="./img/for footer/envelope.png" alt="Напишіть нам!">
+                    </a>
+                </div>
+            </div>  
+        </div>
+    </footer>
+    
+    <script src = "https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src = "./js/script.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
