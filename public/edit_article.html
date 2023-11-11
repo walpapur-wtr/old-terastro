@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редагування статті</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #formattingPanel {
+            background-color: #444;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #formattingPanel button {
+            font-size: 20px;
+            margin: 0;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #555;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        #formattingPanel button:hover {
+            background-color: #777;
+        }
+
+        #articleForm {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        label, input, select {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        #content {
+            width: 100%;
+            min-height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #ffffff;
+            font-size: 16px;
+            resize: vertical;
+        }
+
+        #resizeHandle {
+            margin-top: 10px;
+        }
+
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Стилі для кнопки вибору файлу */
+        .file-upload-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .file-upload-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Приховуємо стандартний інпут файлу */
+        .file-upload-input {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Редагування статті</h1>
+    </header>
+
+    <div class="container">
+        <div id="formattingPanel">
+            <button id="boldButton"><i class="fa fa-bold"></i></button>
+            <button id="italicButton"><i class="fa fa-italic"></i></button>
+            <button id="underlineButton"><i class="fa fa-underline"></i></button>
+            <button id="alignLeftButton"><i class="fa fa-align-left"></i></button>
+            <button id="alignCenterButton"><i class="fa fa-align-center"></i></button>
+            <button id="alignRightButton"><i class="fa fa-align-right"></i></button>
+            <button id="linkButton"><i class="fa fa-link"></i></button>
+            <label for="imageInput" class="file-upload-btn">
+                <i class="fas fa-image"></i> Вибрати зображення
+            </label>
+            <input type="file" id="imageInput" accept="image/*" class="file-upload-input" onchange="handleImageUpload(event)">            
+        </div>
+
+        <!-- Вибір шрифту та розміру тексту -->
+        <label for="fontSelect">Шрифт:</label>
+        <select id="fontSelect">
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Helvetica">Helvetica</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Palatino">Palatino</option>
+            <option value="Garamond">Garamond</option>
+            <option value="Bookman">Bookman</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+        </select>
+
+        <label for="fontSizeSelect">Розмір тексту:</label>
+        <select id="fontSizeSelect">
+            <option value="3">Звичайний</option>
+            <option value="4">Великий</option>
+            <option value="5">Дуже великий</option>
+        </select>
+
+        <br>
+        <br>
+
+        <label for="categories">Категорії (потрібно обрати ще раз):</label><br>
+        <input type="checkbox" id="category1" name="categories" value="Про учасників">Про учасників<br>
+        <input type="checkbox" id="category2" name="categories" value="Події">Події<br>
+        <input type="checkbox" id="category3" name="categories" value="ЗМІ про нас">ЗМІ про нас<br>
+        <input type="checkbox" id="category4" name="categories" value="Блог">Блог<br>
+        <input type="checkbox" id="category5" name="categories" value="LSAO">LSAO<br>
+
+        <form id="articleForm" action="/api/articles" method="POST">
+            <label for="title">Заголовок:</label><br>
+            <input type="text" id="title" name="title" required><br><br>
+            <div id="resizeHandle">
+                <input type="range" id="resizeSlider" min="50" max="1000" step="1" value="200" style="width: 100px;">
+            </div>
+            <label for="content">Зміст:</label><br>
+            <div id="content" contenteditable="true" required></div><br><br>
+            <input type="submit" class="submit-button" value="Зберегти зміни">
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var articleId = urlParams.get("id");
+    
+            if (articleId) {
+                // If there's an article ID, set the form action to update the article
+                document.getElementById("articleForm").action = "/api/articles/" + articleId;
+                
+                // Fetch article data based on the ID and populate the form fields
+                fetch("/api/articles")
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(articles) {
+                        var article = articles.find(a => a.id == articleId);
+                        if (article) {
+                            document.getElementById("title").value = article.title;
+                            document.getElementById("content").innerHTML = article.content;
+    
+                            // Set other form fields or checkboxes based on your data structure
+                        } else {
+                            console.log("Статтю не знайдено");
+                        }
+                    })
+                    .catch(function(error) {
+                        console.log("Помилка при отриманні даних статті:", error);
+                    });
+            }
+    
+            // Add additional logic to handle form submission
+            document.getElementById("articleForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+    
+                var title = document.getElementById("title").value;
+                var content = document.getElementById("content").innerHTML;
+                var selectedCategories = Array.from(document.querySelectorAll("input[name='categories']:checked")).map(checkbox => checkbox.value);
+    
+                var articleData = {
+                    title: title,
+                    content: content,
+                    categories: selectedCategories
+                };
+    
+                // Use the Fetch API to submit the form data
+                fetch(document.getElementById("articleForm").action, {
+                    method: "PUT", // Use PUT for updating
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(articleData)
+                })
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    console.log(data.message);
+                    window.location.href = "catalog.html";
+                })
+                .catch(function(error) {
+                    console.log("Помилка при збереженні статті:", error);
+                });
+            });
+        });
+    </script>   
+    
+    <script src="edit_script.js"></script>
+
+</body>
+</html>
