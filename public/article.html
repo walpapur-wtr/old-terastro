@@ -205,6 +205,7 @@
 
     <!-- Inside the body of article.html, after the content container -->
     <button id="editButton" onclick="editArticle()">Редагувати</button>
+    <button id="deleteButton" onclick="deleteArticle()">Видалити</button>
 
     
     <script src="script.js"></script>
@@ -281,6 +282,28 @@
 
             // Redirect to the edit_article.html page with the article ID as a query parameter
             window.location.href = "/edit_article.html?id=" + articleId;
+        }
+
+        function deleteArticle() {
+            // Отримуємо значення параметру id з URL
+            var urlParams = new URLSearchParams(window.location.search);
+            var articleId = urlParams.get("id");
+
+            // Відправляємо запит DELETE на сервер для видалення статті
+            fetch("/api/articles/" + articleId, {
+                method: "DELETE",
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    // Перенаправляємо користувача на головну сторінку чи іншу сторінку за необхідністю
+                    window.location.href = "./index.html";
+                } else {
+                    console.log("Помилка при видаленні статті");
+                }
+            })
+            .catch(function(error) {
+                console.log("Помилка при видаленні статті:", error);
+            });
         }
 
     </script>
