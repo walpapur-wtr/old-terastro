@@ -202,6 +202,10 @@
 <main>
 <body>
     <div id="articleContainer"></div>
+
+    <!-- Inside the body of article.html, after the content container -->
+    <button id="editButton" onclick="editArticle()">Редагувати</button>
+
     
     <script src="script.js"></script>
     <script>
@@ -269,6 +273,16 @@
                 console.log("Помилка при отриманні даних статті:", error);
             });
         }
+
+        function editArticle() {
+            // Get the current article ID from the URL
+            var urlParams = new URLSearchParams(window.location.search);
+            var articleId = urlParams.get("id");
+
+            // Redirect to the edit_article.html page with the article ID as a query parameter
+            window.location.href = "/edit_article.html?id=" + articleId;
+        }
+
     </script>
     <footer class="footer">
         <div class="container">

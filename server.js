@@ -39,7 +39,7 @@ app.post("/api/articles", (req, res) => {
   const articlesData = getArticlesData();
 
   const newArticle = {
-    id: articlesData.length,
+    id: articlesData.length > 0 ? articlesData[articlesData.length - 1].id + 1 : 0, // Ensure a unique and incrementing ID
     title: title,
     content: content,
     categories: categories,
@@ -48,7 +48,28 @@ app.post("/api/articles", (req, res) => {
   articlesData.push(newArticle);
   saveArticlesData(articlesData);
 
-  res.json({ message: "Стаття успішно збережена" });
+  res.json({ message: "Стаття успішно збережена", article: newArticle });
+});
+
+// New route to handle updating articles
+app.put("/api/articles/:id", (req, res) => {
+  const { id } = req.params;
+  const { title, content, categories } = req.body;
+  const articlesData = getArticlesData();
+
+  const articleToUpdate = articlesData.find(article => article.id == id);
+
+  if (articleToUpdate) {
+    articleToUpdate.title = title;
+    articleToUpdate.content = content;
+    articleToUpdate.categories = categories;
+
+    saveArticlesData(articlesData);
+
+    res.json({ message: "Стаття успішно оновлена" });
+  } else {
+    res.status(404).json({ message: "Статтю не знайдено" });
+  }
 });
 
 app.get("/api/articles/:categories", (req, res) => {
@@ -61,7 +82,6 @@ app.get("/api/articles/:categories", (req, res) => {
 
   res.json(filteredArticles);
 });
-
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(dataFolderPath));
