@@ -12,11 +12,21 @@ const dataFolderPath = path.join(__dirname, "data");
 const filePath = path.join(dataFolderPath, "articles.json");
 
 function getArticlesData() {
-  const filePath = path.join(dataFolderPath, "articles.json");
   try {
     const fileContent = fs.readFileSync(filePath, "utf-8");
     const data = JSON.parse(fileContent);
-    return data && data.articles && Array.isArray(data.articles) ? data.articles : [];
+    const articles = data && data.articles && Array.isArray(data.articles) ? data.articles : [];
+
+    // Check if IDs are not in sequential order
+    const isSequential = articles.every((article, index) => article.id === index);
+
+    if (!isSequential) {
+      // If IDs are not in sequential order, renumber them
+      renumberArticleIds(articles);
+      saveArticlesData(articles);
+    }
+
+    return articles;
   } catch (error) {
     return [];
   }
@@ -29,6 +39,28 @@ function saveArticlesData(articlesData) {
   fs.writeFileSync(filePath, JSON.stringify(dataToSave, null, 2), "utf-8");
 }
 
+function renumberArticleIds(articlesData) {
+  for (let i = 0; i < articlesData.length; i++) {
+    articlesData[i].id = i;
+  }
+}
+
+// Middleware to check and renumber IDs before any route is processed
+app.use((req, res, next) => {
+  const articlesData = getArticlesData();
+
+  // Check if IDs are not in sequential order
+  const isSequential = articlesData.every((article, index) => article.id === index);
+
+  if (!isSequential) {
+    // If IDs are not in sequential order, renumber them
+    renumberArticleIds(articlesData);
+    saveArticlesData(articlesData);
+  }
+
+  next(); // Move to the next middleware or route handler
+});
+
 app.get("/api/articles", (req, res) => {
   const articlesData = getArticlesData();
   res.json(articlesData);
@@ -38,20 +70,22 @@ app.post("/api/articles", (req, res) => {
   const { title, content, categories } = req.body;
   const articlesData = getArticlesData();
 
+  const newArticleId = articlesData.length > 0 ? Math.max(...articlesData.map(article => article.id)) + 1 : 0;
+
   const newArticle = {
-    id: articlesData.length > 0 ? articlesData[articlesData.length - 1].id + 1 : 0, // Ensure a unique and incrementing ID
+    id: newArticleId,
     title: title,
     content: content,
     categories: categories,
   };
 
   articlesData.push(newArticle);
+  renumberArticleIds(articlesData);
   saveArticlesData(articlesData);
 
   res.json({ message: "Стаття успішно збережена", article: newArticle });
 });
 
-// New route to handle updating articles
 app.put("/api/articles/:id", (req, res) => {
   const { id } = req.params;
   const { title, content, categories } = req.body;
@@ -64,9 +98,31 @@ app.put("/api/articles/:id", (req, res) => {
     articleToUpdate.content = content;
     articleToUpdate.categories = categories;
 
+    renumberArticleIds(articlesData);
     saveArticlesData(articlesData);
 
     res.json({ message: "Стаття успішно оновлена" });
+  } else {
+    res.status(404).json({ message: "Статтю не знайдено" });
+  }
+});
+
+app.delete("/api/articles/:id", (req, res) => {
+  const { id } = req.params;
+  const { renumber } = req.query;
+  const articlesData = getArticlesData();
+
+  const articleIndex = articlesData.findIndex(article => article.id == id);
+
+  if (articleIndex !== -1) {
+    articlesData.splice(articleIndex, 1);
+
+    if (renumber === 'true') {
+      renumberArticleIds(articlesData);
+    }
+
+    saveArticlesData(articlesData);
+    res.json({ message: "Стаття успішно видалена" });
   } else {
     res.status(404).json({ message: "Статтю не знайдено" });
   }
