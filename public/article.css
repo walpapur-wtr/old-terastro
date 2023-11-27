@@ -1,8 +1,16 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
+*, *:before, *:after{
     padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+html, body{
+    height: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: "Source Sans Pro";
+    min-width: 100%;
+    scroll-behavior:initial;
 }
 
 header {
@@ -14,7 +22,7 @@ header {
 
 .container {
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto; 
     padding: 20px;
 }
 
@@ -73,18 +81,23 @@ label, input, select {
 }
 
 .submit-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 20px;
-    border-radius: 5px;
+    margin-right: 30px;
+    width: 160px;
+    height: 50px;
+    background-color: rgb(106, 210, 134);
+    color: #2d2d2d;
+    /* border: none; */
+    border-radius: 8px;
+    box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25); 
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-style: bold;
+    transition: 0.6s;
 }
 
 .submit-button:hover {
-    background-color: #45a049;
+    background-color: rgb(22, 190, 67);
+    color:white;
+    transition: 0.6s;
 }
 
 /* Стилі для кнопки вибору файлу */

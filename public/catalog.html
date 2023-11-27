@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css">
@@ -34,17 +33,16 @@
                             <li class="list_item">
                                 <a href="./lsao_page.html" class="header_link">Lsao</a>
                             </li>
-                            <li class = "list_item">
+                            <li class="list_item">
                                 <a class="dropdown-toggle header_link" data-bs-toggle="dropdown" href="./catalog.html" role="button" aria-expanded="false" >Статті</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=Про учасників">Про учасників</a></li>
-                                        <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=Події">Події</a></li>
-                                        <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=ЗМІ про нас">ЗМІ про нас</a></li>
-                                        <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=Блог">Блог</a>
-                                    </ul>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=Про учасників">Про учасників</a></li>
+                                    <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=Події">Події</a></li>
+                                    <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=ЗМІ про нас">ЗМІ про нас</a></li>
+                                    <li><a class="dropdown-item drop_little header_link" href="catalog.html?category=Блог">Блог</a></li>
+                                </ul>
                             </li>
-                        </li>
-                        <li class = "list_item">
+                            <li class = "list_item">
                             <a class="dropdown-toggle header_link" data-bs-toggle="dropdown" href="./astrophoto.html" role="button" aria-expanded="false" >Галерея</a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item drop_little header_link" href="./astrophoto.html">Астрофото</a></li>
@@ -77,30 +75,11 @@
             <img src="./img/fon/Lsao.jpg" alt="backround images" class="background">
         </div>
     <style>
-        
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            font-family: 'Open Sans', sans-serif;
-            font-family: "Source Sans Pro";
-        }
-
         .navigation {
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
         }
-
-        .navigation a {
-            margin: 0 10px;
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .navigation a:hover {
-            text-decoration: underline;
-        }
-
                 /* Оновлена стилізація для підменю */
         .dropdown {
             position: relative;
@@ -147,34 +126,65 @@
             background-color: #0056b3;
         }
 
+        .navigation-button{
+            width: 250px;
+            height: 50px;
+            margin: 40px 50px 40px 0;
+            border-radius: 8px;
+            background-color: #cccccc;
+            box-shadow: 1px 1px 14px 0px rgba(87, 87, 87, 0.4);
+        }
+        .navigation-button:hover{
+            background-color: #737373;
+            color:white;
+            transition: 0.6s;
+        }
         .article-container {
+            padding-top: 30px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
+            flex-wrap: wrap;
+            display: flex;
+            margin-bottom: 50px;
+            margin: -60px 0 -0 0 ;
+            transition: all 0.5s ease; 
+            animation: block 3s 1;
         }
-
+        h2.titleElement{
+            color: rgb(65, 65, 65);
+            font-weight: bold;
+            font-size: 22px;
+            margin: 0;
+        }
+        .article-block:hover h2{
+            color: rgb(106, 0, 255);
+            transition: 0.4s;
+        }
         .article-block {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            max-width: 300px;
+            height: 100%;
+            width: 300px;
+            margin: 40px 10px 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+            padding: 20px 30px;
+            color: #000000;
+            transition: transform 0.5s;
+            overflow: hidden;
         }
 
         .article-block h2 {
-            margin-bottom: 10px;
-            font-size: 20px;
-            line-height: 1.3;
-            height: 60px;
-            overflow: hidden;
+            color: rgb(65, 65, 65);
+            font-weight: bold;
+            font-size: 22px;
+            margin: 0;
         }
 
-        .article-block p {
-            margin-bottom: 10px;
-            font-size: 16px;
+        .body_articles p {
             line-height: 1.5;
-            height: 90px;
             overflow: hidden;
-            text-overflow: ellipsis;
+            text-overflow: ellipsis; 
+            color: rgb(54, 54, 54);
+            font-size: 16px;
         }
 
         .article-block img {
@@ -184,34 +194,76 @@
             cursor: pointer;
         }
 
-        .view-button {
-            display: block;
+        button.view-button {
             width: 100%;
-            padding: 8px 12px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
+            height: 40px;
+            background-color: #cccccc;
+            color: #2d2d2d;
+            /* border: none; */
+            border-radius: 8px;
+            box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25); 
             cursor: pointer;
-            font-size: 16px;
+            font-style: bold;
+            transition: 0.6s;
+
         }
 
         .view-button:hover {
-            background-color: #0056b3;
+            background-color: #575757;
+            color: white;
+            transition: 0.6s;
         }
     </style>
 
 <main>
-    <div class="navigation">
-        <a href="create_article.html">Створити статтю</a>
-        <a href="catalog.html">Подивитися каталог</a>
+    <div class="content">
+        <div class="container">
+            <div class="content_text">
+                <div class="navigation">
+                    <a href="create_article.html"><button class="navigation-button">Створити статтю</button></a>
+                    <a href="catalog.html"><button class="navigation-button">Подивитися каталог</button></a>
+                </div>
+                <h1 class="title">Каталог статей</h1>
+                <!-- Додайте контейнер для відображення статей -->
+                <div class="article-container" id="articlesContainer">
+                    
+                </div>
+            </div>
+        </div>
     </div>
 
-    <h1 style="justify-content: center;">Каталог статей</h1>
- <!-- Додайте контейнер для відображення статей -->
- <div class="article-container" id="articlesContainer"></div>
-
+    <footer class="footer">
+        <div class="container">
+            <div class="footer_body">
+                <div class="footer_text">
+                    <h4>Про нас</h4>
+                    <div class="footer_texr">
+                        <p>
+                            Клуб любителів астрономії “ТерАстро”.
+                            Астрономічне товариство Тернопільського району “Небозвід”.
+                        </p>
+                    </div>    
+                </div>
+                <div class="logo">
+                    <img src="./img/logo/logo1.jpg" alt="Логотип">
+                </div>
+                <div class="footer_social_network">
+                    <a href="https://facebook.com/groups/astroTernopil/" target="_blank">
+                        <img src="./img/for footer/facebook.png" alt="Посилання на фейсбук">
+                    </a>
+                    <a href="https://instagram.com/astroternopil/" target="_blank">
+                        <img src="./img/for footer/instagram.png" alt="Посилання на інстаграм">
+                    </a>
+                    <a href="https://nebozvid.blogspot.com/" target="_blank">
+                        <img src="./img/for footer/blog-text.png" alt="Посилання на блогспот">
+                    </a>
+                    <a href="mailto:terastro2017@gmail.com">
+                        <img src="./img/for footer/envelope.png" alt="Напишіть нам!">
+                    </a>
+                </div>
+            </div>  
+        </div>       
+    </footer>
     <script src="script.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -266,7 +318,9 @@
 
                         // Додайте зміст статті (перших 100 символів, наприклад)
                         var contentElement = document.createElement("p");
-                        contentElement.innerText = stripHTMLTags(article.content.substring(0, 100)) + " ...";
+                        contentElement.className = "body_articles"
+                        contentElement.innerText = stripHTMLTags(article.content.substring(0, 100));
+                        if(article.content.substring>100){ " ..."};
                         articleDiv.appendChild(contentElement);
 
                         // Функція для видалення HTML-тегів
@@ -274,7 +328,6 @@
                             var doc = new DOMParser().parseFromString(html, 'text/html');
                             return doc.body.textContent || "";
                         }
-
                         // Якщо є зображення, додайте його
                         if (article.imageUrl) {
                             var imageElement = document.createElement("img");
@@ -286,6 +339,7 @@
                         // Додайте кнопку для перегляду статті
                         var viewButton = document.createElement("button");
                         viewButton.innerText = "Переглянути";
+                        viewButton.className = "view-button";
                         // Оновлений код для кнопки "Переглянути"
                         viewButton.addEventListener("click", function () {
                             // Перейдіть на сторінку статті з ідентифікатором статті
