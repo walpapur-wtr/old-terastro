@@ -76,30 +76,6 @@
             <img src="./img/fon/Lsao.jpg" alt="backround images" class="background">
         </div>
     <style>
-        
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            font-family: 'Open Sans', sans-serif;
-            font-family: "Source Sans Pro";
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .navigation a {
-            margin: 0 10px;
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .navigation a:hover {
-            text-decoration: underline;
-        }
-
                 /* Оновлена стилізація для підменю */
         .dropdown {
             position: relative;
@@ -147,33 +123,51 @@
         }
 
         .article-container {
+            padding-top: 30px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
+            flex-wrap: wrap;
+            display: flex;
+            margin-bottom: 50px;
+            margin: -60px 0 -0 0 ;
+            transition: all 0.5s ease; 
+            animation: block 3s 1;
         }
-
+        h2.titleElement{
+            color: rgb(65, 65, 65);
+            font-weight: bold;
+            font-size: 22px;
+            margin: 0;
+        }
+        .article-block:hover h2{
+            color: rgb(106, 0, 255);
+            transition: 0.4s;
+        }
         .article-block {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            max-width: 300px;
+            height: 100%;
+            width: 300px;
+            margin: 40px 10px 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+            padding: 20px 30px;
+            color: #000000;
+            transition: transform 0.5s;
+            overflow: hidden;
         }
 
         .article-block h2 {
-            margin-bottom: 10px;
-            font-size: 20px;
-            line-height: 1.3;
-            height: 60px;
-            overflow: hidden;
+            color: rgb(65, 65, 65);
+            font-weight: bold;
+            font-size: 22px;
+            margin: 0;
         }
 
-        .article-block p {
-            margin-bottom: 10px;
-            font-size: 16px;
+        .body_articles p {
             line-height: 1.5;
-            height: 90px;
             overflow: hidden;
-            text-overflow: ellipsis;
+            text-overflow: ellipsis; 
+            color: rgb(54, 54, 54);
+            font-size: 16px;
         }
 
         .article-block img {
@@ -183,29 +177,39 @@
             cursor: pointer;
         }
 
-        .view-button {
-            display: block;
+        button.view-button {
             width: 100%;
-            padding: 8px 12px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
+            height: 40px;
+            background-color: #cccccc;
+            color: #2d2d2d;
+            /* border: none; */
+            border-radius: 8px;
+            box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25); 
             cursor: pointer;
-            font-size: 16px;
+            font-style: bold;
+            transition: 0.6s;
+
         }
 
         .view-button:hover {
-            background-color: #0056b3;
+            background-color: #575757;
+            color: white;
+            transition: 0.6s;
         }
     </style>
 
 <main>
+    <div class="content">
+        <div class="container">
+            <div class="content_text">
+                <!-- Додайте контейнер для відображення статей -->
+                <div class="article-container" id="articlesContainer">
 
- <!-- Додайте контейнер для відображення статей -->
- <div class="article-container" id="articlesContainer"></div>
-
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script src="script.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -280,6 +284,7 @@
                         // Додайте кнопку для перегляду статті
                         var viewButton = document.createElement("button");
                         viewButton.innerText = "Переглянути";
+                        viewButton.className = "view-button";   
                         // Оновлений код для кнопки "Переглянути"
                         viewButton.addEventListener("click", function () {
                             // Перейдіть на сторінку статті з ідентифікатором статті

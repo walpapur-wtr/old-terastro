@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="./img/fon/terastro.jpg">
   <title>Сторінка входу та реєстрації</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 0;
+    *, *:before, *:after{
+        padding: 0;
+        margin: 0;
+        border: 0;
+        box-sizing: border-box;
+    }
+    html, body{
+        height: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Open Sans', sans-serif;
+        font-family: "Source Sans Pro";
+        min-width: 100%;
+        margin: 0;
+        background-color: #f2f2f2;
+        display: flex;
+        flex-direction: column;
     }
 
+    .login_img{
+      width: 230px;  
+      height: 100%; 
+      margin: 20px 0;
+}
     .container {
       display: flex;
       justify-content: center;
@@ -18,15 +40,58 @@
     }
 
     .form-container {
-      width: 300px; /* Змініть розмір блоку за потребою */
+      justify-content: center;
+      text-align: center;
+      width: 400px; /* Змініть розмір блоку за потребою */
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 12px;
       padding: 20px;
       margin: 10px;
       background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 1px 2px 20px 0px rgba(0, 0, 0, 0.2);
+    }
+    .name, 
+    .email, 
+    .password {
+      padding-left: 20px ;
+      height: 50px;
+      margin-top: 30px;
+      border-radius: 16px;
+      background: #D9D9D9;
+      box-shadow: 1px 1px 10px 0px rgba(67, 67, 67, 0.25);
+      transition: 0.4s;
+
     }
 
+    .name:focus, 
+    .email:focus, 
+    .password:focus,
+    .button-login {
+      margin-bottom: -2px;
+      filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.4));
+      font-size: 18px;
+      font-family: 'Source Sans Pro';
+      outline:none;
+      transition: 0.4s;
+    }
+    .button-login{
+      width: 100px;
+      border: #0d00ff;
+    }
+    ::placeholder{
+    color: #747474;
+    font-family: Source Sans Pro;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    }
+    .button-login{
+      color: rgb(31, 31, 255); 
+    }
+    .button-login:hover a {
+      color: rgb(255, 255, 255);
+    }
     h2 {
       margin-top: 0;
     }
@@ -36,36 +101,48 @@
       flex-direction: column;
     }
 
-    input {
+    /* input {
       padding: 10px;
       margin-bottom: 10px;
       border: 1px solid #ccc;
       border-radius: 3px;
-    }
+    } */
 
     button {
       padding: 10px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
+      background-color: #cccccc;
+      color: #2d2d2d;
+      /* border: none; */
+      border-radius: 8px;
+      box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.25); 
       cursor: pointer;
+      font-style: bold;
+      transition: 0.6s;
     }
 
     button:hover {
-      background-color: #45a049;
+      color: white;
+      background-color: rgb(0, 0, 0);
+      opacity: 0.7;
+      border-radius: 16px;
+      transition: 0.6s; /* Змінено тривалість анімації на 1 секунду */
     }
 
-    button:focus {
-      outline: none;
+    .register-button{
+      margin: 30px 0;
+      height: 55px;
+      transition: 0.6s;
     }
-
-    .register-link,
+    .text-registration{
+      margin: 0;
+      font-size: 18px;
+    }
     .login-link {
+      /* padding: 10px; */
       text-align: center;
-      margin-top: 10px;
+      border: #0d00ff;
     }
-
+    
     /* Додайте стиль, щоб ховати реєстраційний блок за межами контейнера */
     #registration {
       position: absolute;
@@ -73,19 +150,21 @@
   </style>
 </head>
 <body>
+  <main>
     <div class="container">
       <div class="form-container" id="registration">
-        <h2>Реєстрація</h2>
+        <img class="login_img" src="./img/logo/registration.svg" alt="">
         <form action="register.php" method="post">
-          <input type="text" name="name" placeholder="Ім'я" required>
-          <input type="email" name="email" placeholder="Електронна пошта" required>
-          <input type="password" name="password" placeholder="Пароль" required>
-          <button type="submit" name="register">Зареєструватися</button>
+          <input class="name" type="text" name="name" placeholder="Ім'я" required>
+          <input class="email" type="email" name="email" placeholder="Електронна пошта" required>
+          <input class="password" type="password" name="password" placeholder="Пароль" required>
+          <button class="register-button" type="submit" name="register"><p class="text-registration">Зареєструватися</p></button>
         </form>
         <div class="login-link">
-          <a href="login.html">Вхід</a>
+          <a href="login.html"><button class="button-login">Вхід</button></a>
         </div>
       </div>
     </div>
+  </main>
 </body>
 </html>
