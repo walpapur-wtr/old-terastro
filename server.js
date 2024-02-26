@@ -139,7 +139,7 @@ app.get("/api/articles/:categories", (req, res) => {
   res.json(filteredArticles);
 });
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "")));
 app.use(express.static(dataFolderPath));
 
 app.listen(port, () => {
